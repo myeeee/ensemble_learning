@@ -12,7 +12,7 @@ def clz_to_prob(clz):
     z = np.zeros((len(clz), len(l)))
     for i, j in enumerate(m):
         z[i, j] = 1.0
-    return z
+    return z, list(map(str, l))
 
 
 def prob_to_clz(prob, cl):
@@ -30,10 +30,10 @@ def get_base_args():
 
     ps.add_argument('--input', '-i', help='Training file')
     ps.add_argument('--separator', '-s', default=',', help='CSV separator')
-    ps.add_argument('--indexcol', '-x', default=None, help='CSV index_col')
+    ps.add_argument('--indexcol', '-x', type=int, default=None, help='CSV index_col')
     ps.add_argument('--regression', '-r', action='store_true', help='Regression')
     ps.add_argument('--crossvalidate', '-c', action='store_true', help='Use Cross Validation')
-    ps.add_argument('--header', '-e', default=None, help='CSV header')
+    ps.add_argument('--header', '-e', type=int, default=None, help='CSV header')
 
     return ps
 
